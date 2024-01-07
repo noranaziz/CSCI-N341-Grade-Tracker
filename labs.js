@@ -123,7 +123,7 @@ function displayAssignments(assignments) {
             }
         })
 
-        tableContainer.appendChild(graderDiv)
+        tableContainer.appendChild(table)
     } else {
         console.error("table container not found")
     }
