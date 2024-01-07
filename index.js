@@ -54,7 +54,7 @@ function shuffleArray(array, seed) {
     const random = new Math.seedrandom(seed)
 
     for(let i = array.length - 1; i > 0; i--){
-        const j = Math.floor(Math.random() * (i + 1))
+        const j = Math.floor(random() * (i + 1))
 
         // swap
         const temp = array[i]
