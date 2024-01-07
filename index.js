@@ -41,8 +41,8 @@ function move(destination) {
     // assign students to graders
     const assignments = assignGraders(shuffledStudents)
 
-    // output assignments
-    console.log(assignments)
+    // output assignments as table
+    displayAssignments(assignments)
 
     // redirect to destination page
     window.location.href = destination
@@ -81,4 +81,9 @@ function assignGraders(students) {
     })
 
     return assignments
+}
+
+// function to display assignments as table
+function displayAssignments(assignments) {
+    
 }
