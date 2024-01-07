@@ -42,14 +42,15 @@ function move(destination) {
     const assignments = assignGraders(shuffledStudents)
 
     // redirect to destination page
-    window.location.href = destination
+    // window.location.href = destination
+    window.location.href = window.location.href + destination
 
     console.log("destination: " + window.location.pathname.split('/').pop())
     console.log("destination: " + window.location.href)
 
     // output assignments as table depending on what page 
-    if(window.location.pathname !== 'index.html') {
-        displayAssignments(assignments)
+    if(!destination.includes('index.html')) {
+        displayAssignments(assignments, destination)
     }
 }
 
