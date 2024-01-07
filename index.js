@@ -80,10 +80,45 @@ function assignGraders(students) {
         assignments[student] = grader
     })
 
-    return assignments
+    // sort assignments alphabetically by student name
+    const sortedAssignments = Object.fromEntries(
+        Object.entries(assignments).sort(([a], [b]) => a.localeCompare(b))
+    )
+
+    return sortedAssignments
 }
 
 // function to display assignments as table
 function displayAssignments(assignments) {
-    
+    const tableContainer = document.getElementById('assignments-table')
+    tableContainer.innerHTML = '<h2>Assignments</h2>'
+
+    const table = document.createElement('table')
+    const graders = ['Noran', 'Laurie', 'Sravani']
+
+    // table header (outputs names of graders)
+    const headerRow = table.insertRow()
+    headerRow.insertCell(0) // empty cell for spacing
+    graders.forEach((grader, index) => {
+        const headerCell = headerRow.insertCell(index + 1)
+        headerCell.innerHTML = '<strong>${grader}</strong>'
+    })
+
+    // position the table with assignment data
+    for(const student in assignments) {
+        const rowIndex = table.rows.length
+        const row = table.insertRow(rowIndex)
+
+        // first cell for student name
+        const studentCell = row.insertCell(0)
+        studentCell.innerHTML = student
+
+        // cells for grader assignments
+        graders.forEach((grader, index) => {
+            const graderCell = row.insertCell(index + 1)
+            graderCell.innerHTML = assignments[student] === grader ? 'Assigned' : ''
+        })
+    }
+
+    tableContainer.appendChild(table)
 }
