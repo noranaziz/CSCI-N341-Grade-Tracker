@@ -18,8 +18,6 @@ function callAll() {
 
     // display table
     displayAssignments(assignments)
-
-    console.log(destination)
 }
 
 // function to get the current file name from the URL
