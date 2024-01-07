@@ -113,12 +113,20 @@ function displayAssignments(assignments) {
             const cell = table.rows[table.rows.length - 1].insertCell()
             cell.innerHTML = `<strong>${grader}</strong>`
 
-            // add students below each grader
+            // add students below each grader as buttons
             for(const student in assignments) {
                 if(assignments[student] == grader) {
-                    const studentDiv = document.createElement('div')
-                    studentDiv.innerHTML = student
-                    cell.appendChild(studentDiv)
+                    const studentButton = document.createElement('button')
+                    studentButton.innerHTML = student
+                    studentButton.addEventListener('click', () => {
+                        // change background color on button click
+                        if(studentButton.style.backgroundColor == 'lightgreen') {
+                            studentButton.style.backgroundColor = '' // reset color
+                        } else {
+                            studentButton.style.backgroundColor = 'lightgreen'
+                        }
+                    })
+                    cell.appendChild(studentButton)
                 }
             }
         })
