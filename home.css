@@ -15,12 +15,17 @@ h1 {
     padding: 10px;
 }
 
+.button-container {
+    display: flex;
+    justify-content: space-around;
+}
+
 button {
     margin: 10px;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    width: 95%;
+    width: 45%;
 }
   
 #root {
