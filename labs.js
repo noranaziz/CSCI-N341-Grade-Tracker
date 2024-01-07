@@ -17,7 +17,7 @@ function callAll() {
     const assignments = assignGraders(shuffledStudents)
 
     // display table
-    displayAssignments(assignments, destination)
+    displayAssignments(assignments)
 
     console.log(destination)
 }
@@ -95,11 +95,11 @@ function assignGraders(students) {
 }
 
 // function to display assignments as table
-function displayAssignments(assignments, destination) {
-    const tableContainer = document.getElementById('lab0-table')
+function displayAssignments(assignments) {
+    const tableContainer = document.getElementById('table')
 
 
-    // check if current page is one of the destination pages
+    // check if tableContainer exists
     if(tableContainer) {
         tableContainer.innerHTML = '<h2>Assignments</h2>'
 
