@@ -41,8 +41,10 @@ function move(destination) {
     // assign students to graders
     const assignments = assignGraders(shuffledStudents)
 
-    // output assignments as table
-    displayAssignments(assignments)
+    // output assignments as table depending on what page 
+    if(destination !== 'index.html'){
+        displayAssignments(assignments)
+    }
 
     // redirect to destination page
     window.location.href = destination
@@ -91,34 +93,41 @@ function assignGraders(students) {
 // function to display assignments as table
 function displayAssignments(assignments) {
     const tableContainer = document.getElementById('assignments-table')
-    tableContainer.innerHTML = '<h2>Assignments</h2>'
 
-    const table = document.createElement('table')
-    const graders = ['Noran', 'Laurie', 'Sravani']
+    // check if current page is one of the destination pages
+    const currentPage = window.location.pathname
+    const isDestinationPage = currentPage !== '/index.html'
 
-    // table header (outputs names of graders)
-    const headerRow = table.insertRow()
-    headerRow.insertCell(0) // empty cell for spacing
-    graders.forEach((grader, index) => {
-        const headerCell = headerRow.insertCell(index + 1)
-        headerCell.innerHTML = '<strong>${grader}</strong>'
-    })
+    if(isDestinationPage) {
+        tableContainer.innerHTML = '<h2>Assignments</h2>'
 
-    // position the table with assignment data
-    for(const student in assignments) {
-        const rowIndex = table.rows.length
-        const row = table.insertRow(rowIndex)
+        const table = document.createElement('table')
+        const graders = ['Noran', 'Laurie', 'Sravani']
 
-        // first cell for student name
-        const studentCell = row.insertCell(0)
-        studentCell.innerHTML = student
-
-        // cells for grader assignments
+        // table header (outputs names of graders)
+        const headerRow = table.insertRow()
+        headerRow.insertCell(0) // empty cell for spacing
         graders.forEach((grader, index) => {
-            const graderCell = row.insertCell(index + 1)
-            graderCell.innerHTML = assignments[student] === grader ? 'Assigned' : ''
+            const headerCell = headerRow.insertCell(index + 1)
+            headerCell.innerHTML = `<strong>${grader}</strong>`
         })
-    }
 
-    tableContainer.appendChild(table)
+        // position the table with assignment data
+        for(const student in assignments) {
+            const rowIndex = table.rows.length
+            const row = table.insertRow(rowIndex)
+
+            // first cell for student name
+            const studentCell = row.insertCell(0)
+            studentCell.innerHTML = student
+
+            // cells for grader assignments
+            graders.forEach((grader, index) => {
+                const graderCell = row.insertCell(index + 1)
+                graderCell.innerHTML = assignments[student] === grader ? 'Assigned' : ''
+            })
+        }
+
+        tableContainer.appendChild(table)
+    }
 }
