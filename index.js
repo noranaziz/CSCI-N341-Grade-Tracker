@@ -44,7 +44,8 @@ function move(destination) {
     // redirect to destination page
     window.location.href = destination
 
-    console.log("destination: " + window.location.pathname)
+    console.log("destination: " + window.location.pathname.split('/').pop())
+    console.log("destination: " + window.location.href)
 
     // output assignments as table depending on what page 
     if(window.location.pathname !== 'index.html') {
@@ -93,14 +94,12 @@ function assignGraders(students) {
 }
 
 // function to display assignments as table
-function displayAssignments(assignments) {
-    const tableContainer = document.getElementById('assignments-table')
+function displayAssignments(assignments, destination) {
+    const tableContainer = document.getElementById('lab0-table')
+
 
     // check if current page is one of the destination pages
-    const currentPage = window.location.pathname
-    const isDestinationPage = currentPage !== '/index.html'
-
-    if(isDestinationPage) {
+    if(tableContainer) {
         tableContainer.innerHTML = '<h2>Assignments</h2>'
 
         const table = document.createElement('table')
@@ -131,5 +130,7 @@ function displayAssignments(assignments) {
         }
 
         tableContainer.appendChild(table)
+    } else {
+        console.error("table container not found")
     }
 }
