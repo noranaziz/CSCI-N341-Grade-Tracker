@@ -66,8 +66,6 @@ function shuffleArray(array, seed) {
     return array
 }
 
-// 
-
 // function to assign graders to students
 function assignGraders(students) {
     // array of graders
@@ -99,32 +97,30 @@ function displayAssignments(assignments) {
 
     // check if tableContainer exists
     if(tableContainer) {
-        tableContainer.innerHTML = '<h2>Assignments</h2>'
-
         const table = document.createElement('table')
         const graders = ['Noran', 'Laurie', 'Sravani']
 
         // table header (outputs names of graders)
         const headerRow = table.insertRow()
-        headerRow.insertCell(0) // empty cell for spacing
-        graders.forEach((grader, index) => {
-            const headerCell = headerRow.insertCell(index + 1)
+
+        graders.forEach((grader) => {
+            const headerCell = document.createElement('th')
             headerCell.innerHTML = `<strong>${grader}</strong>`
+            headerRow.appendChild(headerCell)
         })
 
         // position the table with assignment data
         for(const student in assignments) {
-            const rowIndex = table.rows.length
-            const row = table.insertRow(rowIndex)
-
-            // first cell for student name
-            const studentCell = row.insertCell(0)
+            const row = table.insertRow()
+            const studentCell = document.createElement('td')
             studentCell.innerHTML = student
+            row.appendChild(studentCell)
 
             // cells for grader assignments
-            graders.forEach((grader, index) => {
-                const graderCell = row.insertCell(index + 1)
+            graders.forEach((grader) => {
+                const graderCell = document.createElement('td')
                 graderCell.innerHTML = assignments[student] === grader ? 'Assigned' : ''
+                row.appendChild(graderCell)
             })
         }
 
