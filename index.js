@@ -8,27 +8,35 @@ function move(destination) {
     switch(destination) {
         case 'lab0.html':
             seed = 'lab0Seed'
+            window.location.href = '../lab0.html'
             break;
         case 'lab1.html':
             seed = 'lab1Seed'
+            window.location.href = '../lab1.html'
             break;
         case 'lab2.html':
             seed = 'lab2Seed'
+            window.location.href = '../lab2.html'
             break;
         case 'lab3.html':
             seed = 'lab3Seed'
+            window.location.href = '../lab3.html'
             break;
         case 'midterm.html':
             seed = 'midtermSeed'
+            window.location.href = '../midterm.html'
             break;
         case 'lab4.html':
             seed = 'lab4Seed'
+            window.location.href = '../lab4.html'
             break;
         case 'lab5.html':
             seed = 'lab5Seed'
+            window.location.href = '../lab5.html'
             break;
         case 'final.html':
             seed = 'finalSeed'
+            window.location.href = '../final.html'
             break;
         default:
             seed = 'defaultSeed'
@@ -40,10 +48,6 @@ function move(destination) {
 
     // assign students to graders
     const assignments = assignGraders(shuffledStudents)
-
-    // redirect to destination page
-    // window.location.href = destination
-    window.location.href = window.location.href + destination
 
     console.log("destination: " + window.location.pathname.split('/').pop())
     console.log("destination: " + window.location.href)
