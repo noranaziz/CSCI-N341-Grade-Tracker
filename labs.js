@@ -99,20 +99,30 @@ function displayAssignments(assignments) {
     if(tableContainer) {
         const graders = ['Noran', 'Laurie', 'Sravani']
 
-        graders.forEach((grader) => {
-            const graderDiv = document.createElement('div')
-            graderDiv.innerHTML = `<strong> ${grader}</strong>`
+        // create a table with 3 columns
+        const table = document.getElementById('table')
 
-            for(const student in assignments) {
-                if(assignments[student] === grader) {
-                    const studentDiv = document.createElement('div')
-                    studentDiv.innerHTML = student
-                    graderDiv.appendChild(studentDiv)
-                }
+        graders.forEach((grader, index) => {
+            if(index % 3 == 0) {
+                // create a new row for every 3 graders
+                const row = table.insertRow()
             }
 
-            tableContainer.appendChild(graderDiv)
+            // create a cell for each grader
+            const cell = table.rows[table.rows.length - 1].insertCell()
+            cell.innerHTML = `<strong>${grader}</strong>`
+
+            // add students below each grader
+            for(const student in assignments) {
+                if(assignments[student] == grader) {
+                    const studentDiv = document.createElement('div')
+                    studentDiv.innerHTML = student
+                    cell.appendChild(studentDiv)
+                }
+            }
         })
+
+        tableContainer.appendChild(graderDiv)
     } else {
         console.error("table container not found")
     }
