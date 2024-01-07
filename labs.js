@@ -100,7 +100,8 @@ function displayAssignments(assignments) {
         const graders = ['Noran', 'Laurie', 'Sravani']
 
         // create a table with 3 columns
-        const table = document.getElementById('table')
+        const table = document.createElement('table')
+        table.classList.add('assignments-table')
 
         graders.forEach((grader, index) => {
             if(index % 3 == 0) {
