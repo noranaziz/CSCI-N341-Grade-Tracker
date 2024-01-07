@@ -1,39 +1,14 @@
 // function when moving to another page
-function callAll(destination) {    
+function callAll() {
+    // get current file name from URL
+    const currentFileName = getCurrentFileName() || 'default.html'
+    
+    // get seed from file name
+    let seed = inferDestination(currentFileName)
+    console.log(seed)
+    
     // array of students
     const students = ['Mina Abdelmalek', 'Nabila Abdoulkadri', 'Ahmad Anbar', 'John Beanblossom', 'Dorian Bell II', 'Ethan Bose', 'Mason Coles', 'Oliver Cooksey', 'Sid Dineshkumar', 'Sriman Donthireddi', 'Ana Marija Duleva', 'Jenna Flannery', 'Marissa Ford', 'Corey Gaylord', 'Jacob Gibson', 'Karnveer Gill', 'Avery Gilstrap', 'Simon Greenaway', 'Andrew Hage', 'Ayddan Hartle', 'Noor Hassuneh', 'Solomon Haynes', 'Udantha Herath', 'Victor Ilemobayo', 'Rece Ille-Potter', 'Liam Issah', 'Jorge Jimenez', 'Yassir Khalaf', 'Skyler Kiefer', 'Austin Kitch', 'Nathan Kohlman', 'Benjamin Krohn', 'Kelly Kuhn', 'Logan Kurker', 'Jack Lazaro', 'John Leidy', 'Johnathan Leverenz', 'Dylan Manning', 'Evan Marsh', 'Jack McClanahan', 'Leo Morales', 'Wali Munir', 'Elhadji Ndoye', 'Daniel Park', 'Quinton Pedrick', 'Adolfo Pozos Garcia', 'Dylan Reid', 'Muhammad Rizwan', 'Jonathan Rodriguez', 'Manjot Singh', 'Parmindar Singh', 'Miyatah Singleton', 'Carson Strohm', 'Samuel Theising', 'Zach Ullom', 'Hannah Waterman', 'JT Wellspring', 'William Wilkerson', 'Justin Zhu']
-
-    // initialize seed
-    let seed;
-    switch(destination) {
-        case 'lab0.html':
-            seed = 'lab0Seed'
-            break
-        case 'lab1.html':
-            seed = 'lab1Seed'
-            break
-        case 'lab2.html':
-            seed = 'lab2Seed'
-            break
-        case 'lab3.html':
-            seed = 'lab3Seed'
-            break
-        case 'midterm.html':
-            seed = 'midtermSeed'
-            break
-        case 'lab4.html':
-            seed = 'lab4Seed'
-            break
-        case 'lab5.html':
-            seed = 'lab5Seed'
-            break
-        case 'final.html':
-            seed = 'finalSeed'
-            break
-        default:
-            seed = 'defaultSeed'
-            break
-    }
 
     // shuffle array of students
     const shuffledStudents = shuffleArray(students, seed)
@@ -45,6 +20,36 @@ function callAll(destination) {
     displayAssignments(assignments, destination)
 
     console.log(destination)
+}
+
+// function to get the current file name from the URL
+function getCurrentFileName() {
+    const pathArray = window.location.pathname.split('/')
+    return pathArray[pathArray.length - 1]
+}
+
+// function to infer destination based on the file name
+function inferDestination(fileName) {
+    switch(fileName) {
+        case 'lab0.html':
+            return 'lab0Seed'
+        case 'lab1.html':
+            return 'lab1Seed'
+        case 'lab2.html':
+            return 'lab2Seed'
+        case 'lab3.html':
+            return 'lab3Seed'
+        case 'midterm.html':
+            return 'midtermSeed'
+        case 'lab4.html':
+            return 'lab4Seed'
+        case 'lab5.html':
+            return 'lab5Seed'
+        case 'final.html':
+            return 'finalSeed'
+        default:
+            return 'defaultSeed'
+    }
 }
 
 // function to shuffle an array randomly
@@ -62,6 +67,8 @@ function shuffleArray(array, seed) {
     }
     return array
 }
+
+// 
 
 // function to assign graders to students
 function assignGraders(students) {
