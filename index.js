@@ -1,3 +1,10 @@
+// function to output assignments as table depending on the page
+function outputAssignments(destination, assignments) {
+    if(destination !== 'index.html') {
+        displayAssignments(assignments)
+    }
+}
+
 // function when moving to another page
 function move(destination) {
     // array of students
@@ -41,13 +48,13 @@ function move(destination) {
     // assign students to graders
     const assignments = assignGraders(shuffledStudents)
 
-    // output assignments as table depending on what page 
-    if(destination !== 'index.html'){
-        displayAssignments(assignments)
-    }
-
     // redirect to destination page
     window.location.href = destination
+
+    console.log("destination: " + destination)
+    
+    // output assignments as table depending on what page 
+    outputAssignments(destination, assignments)
 }
 
 // function to shuffle an array randomly
