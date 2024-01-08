@@ -32,11 +32,21 @@ button {
     width: 100%;
     box-sizing: border-box;
     border: none;
+    background-color: rgb(172, 197, 245);
+}
+
+#lab0, #lab1, #lab2, #lab3, #midterm, #lab4, #lab5, #final {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
     border-radius: 5px;
     background-color: rgb(172, 197, 245);
 }
 
-button:hover {
+button:hover, #lab0:hover, #lab1:hover, #lab2:hover, #lab3:hover, #midterm:hover, #lab4:hover, #lab5:hover, #final:hover {
     background-color: cornflowerblue;
 }
 
