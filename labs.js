@@ -22,6 +22,11 @@ function callAll() {
 
     // apply random pastel color
     applyRandomPastel(currentPageName)
+
+    // clear localStorage when user is about to leave the page
+    window.addEventListener('beforeunload', function() {
+        localStorage.clear()
+    })
 }
 
 // function to get the current file name from the URL
@@ -146,7 +151,7 @@ function displayAssignments(assignments) {
 function generatePastel() {
     const hue = Math.floor(Math.random() * 360)
     const saturation = Math.floor(Math.random() * 30) + 70 // keep saturation between 70% and 100%
-    const lightness = Math.floor(Math.random() * 20) + 60 // keep lightness between 60% and 80%
+    const lightness = Math.floor(Math.random() * 20) + 70 // keep lightness between 70% and 90%
 
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`
 }
