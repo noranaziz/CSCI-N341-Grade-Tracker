@@ -150,15 +150,33 @@ function generatePastel() {
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`
 }
 
+// function to get or generate a random pastel color and store it in localStorage
+function getOrCreatePastel() {
+    // check if color is already stored in localStorage
+    const storedColor = localStorage.getItem('pastelColor')
+
+    if(storedColor) {
+        return storedColor
+    } else {
+        // generate new color
+        const newColor = generatePastel()
+
+        // store new color in localStorage
+        localStorage.setItem('pastelColor', newColor)
+
+        return newColor
+    }
+}
+
 // apply random pastel color to all buttons
 function applyRandomPastel() {
-    const randomColor = generatePastel()
+    const pastelColor = getOrCreatePastel()
 
     // get all buttons on the page
     const buttons = document.querySelectorAll('button')
 
     // apply color to each button
     buttons.forEach((button) => {
-        button.style.backgroundColor = randomColor
+        button.style.backgroundColor = pastelColor
     })
 }
