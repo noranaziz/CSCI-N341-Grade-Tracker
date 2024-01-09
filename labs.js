@@ -2,6 +2,7 @@
 function callAll() {
     // get current file name from URL
     const currentFileName = getCurrentFileName() || 'default.html'
+    const currentPageName = getCurrentFileName().split('.')[0]
     
     // get seed from file name
     let seed = inferDestination(currentFileName)
@@ -20,7 +21,7 @@ function callAll() {
     displayAssignments(assignments)
 
     // apply random pastel color
-    applyRandomPastel()
+    applyRandomPastel(currentPageName)
 }
 
 // function to get the current file name from the URL
@@ -150,10 +151,13 @@ function generatePastel() {
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`
 }
 
-// function to get or generate a random pastel color and store it in localStorage
-function getOrCreatePastel() {
-    // check if color is already stored in localStorage
-    const storedColor = localStorage.getItem('pastelColor')
+// function to get or generate a random pastel color based on the current page and store it in localStorage
+function getOrCreatePastel(pageName) {
+    // construct a unique key for each page
+    const storageKey = `pastelColor_${pageName}`
+
+    // check if color is already stored in localStorage for this page
+    const storedColor = localStorage.getItem(storageKey)
 
     if(storedColor) {
         return storedColor
@@ -162,15 +166,15 @@ function getOrCreatePastel() {
         const newColor = generatePastel()
 
         // store new color in localStorage
-        localStorage.setItem('pastelColor', newColor)
+        localStorage.setItem(storageKey, newColor)
 
         return newColor
     }
 }
 
 // apply random pastel color to all buttons
-function applyRandomPastel() {
-    const pastelColor = getOrCreatePastel()
+function applyRandomPastel(pageName) {
+    const pastelColor = getOrCreatePastel(pageName)
 
     // get all buttons on the page
     const buttons = document.querySelectorAll('button')
