@@ -118,12 +118,16 @@ function displayAssignments(assignments) {
                 if(assignments[student] == grader) {
                     const studentButton = document.createElement('button')
                     studentButton.innerHTML = student
+
+                    // apply random color
+                    applyRandomPastel(studentButton)
+                    
                     studentButton.addEventListener('click', () => {
                         // change background color on button click
-                        if(studentButton.style.backgroundColor == 'lightgreen') {
+                        if(studentButton.style.backgroundColor == 'lightblue') {
                             studentButton.style.backgroundColor = '' // reset color
                         } else {
-                            studentButton.style.backgroundColor = 'lightgreen'
+                            studentButton.style.backgroundColor = 'lightblue'
                         }
                     })
                     cell.appendChild(studentButton)
@@ -135,4 +139,19 @@ function displayAssignments(assignments) {
     } else {
         console.error("table container not found")
     }
+}
+
+// function to generate random pastel color
+function generatePastel() {
+    const hue = Math.floor(Math.random() * 360)
+    const saturation = Math.floor(Math.random() * 30) + 70 // keep saturation between 70% and 100%
+    const lightness = Math.floor(Math.random() * 20) + 60 // keep lightness between 60% and 80%
+
+    return `hsl(${hue}, ${saturation}%, ${lightness}%)`
+}
+
+// apply random pastel color to an element
+function applyRandomPastel(element) {
+    const randomColor = generatePastel()
+    element.style.backgroundColor = randomColor
 }
