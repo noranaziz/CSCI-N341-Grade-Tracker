@@ -24,9 +24,11 @@ function callAll() {
     applyRandomPastel(currentPageName)
 
     // clear localStorage when user is about to leave the page
-    window.addEventListener('beforeunload', function() {
-        localStorage.clear()
-    })
+    if (currentFileName == 'index.html') {
+        window.addEventListener('beforeunload', function() {
+            localStorage.clear()
+        })
+    }
 }
 
 // function to get the current file name from the URL
