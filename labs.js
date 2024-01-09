@@ -18,6 +18,9 @@ function callAll() {
 
     // display table
     displayAssignments(assignments)
+
+    // apply random pastel color
+    applyRandomPastel()
 }
 
 // function to get the current file name from the URL
@@ -118,9 +121,6 @@ function displayAssignments(assignments) {
                 if(assignments[student] == grader) {
                     const studentButton = document.createElement('button')
                     studentButton.innerHTML = student
-
-                    // apply random color
-                    applyRandomPastel(studentButton)
 
                     studentButton.addEventListener('click', () => {
                         // change background color on button click
