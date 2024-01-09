@@ -23,6 +23,8 @@ function callAll() {
     // apply random pastel color
     applyRandomPastel(currentPageName)
 
+    console.log(document.getElementById('lab0'))
+    
     // apply color to buttons in index.html
     document.getElementById('lab0').style.backgroundColor = getOrCreatePastel('lab0')
     document.getElementById('lab1').style.backgroundColor = getOrCreatePastel('lab1')
@@ -107,7 +109,6 @@ function assignGraders(students) {
 // function to display assignments as table
 function displayAssignments(assignments) {
     const tableContainer = document.getElementById('table')
-
 
     // check if tableContainer exists
     if(tableContainer) {
