@@ -121,7 +121,7 @@ function displayAssignments(assignments) {
 
                     // apply random color
                     applyRandomPastel(studentButton)
-                    
+
                     studentButton.addEventListener('click', () => {
                         // change background color on button click
                         if(studentButton.style.backgroundColor == 'lightblue') {
@@ -150,8 +150,15 @@ function generatePastel() {
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`
 }
 
-// apply random pastel color to an element
-function applyRandomPastel(element) {
+// apply random pastel color to all buttons
+function applyRandomPastel() {
     const randomColor = generatePastel()
-    element.style.backgroundColor = randomColor
+
+    // get all buttons on the page
+    const buttons = document.querySelectorAll('button')
+
+    // apply color to each button
+    buttons.forEach((button) => {
+        button.style.backgroundColor = randomColor
+    })
 }
