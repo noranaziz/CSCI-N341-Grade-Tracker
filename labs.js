@@ -184,6 +184,7 @@ function applyRandomPastel(pageName) {
     // apply color to each button
     buttons.forEach((button) => {
         button.style.backgroundColor = pastelColors.original
+        console.log(button.style.backgroundColor)
 
         // add hover effect
         button.addEventListener('mouseover', () => {
