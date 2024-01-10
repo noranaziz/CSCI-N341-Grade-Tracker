@@ -34,6 +34,10 @@ button {
     border: none;
 }
 
+button:hover {
+    background-color: aqua;
+}
+
 .assignments-table {
     width: 100%;
     table-layout: fixed;
