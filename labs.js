@@ -24,16 +24,6 @@ function callAll() {
     applyRandomPastel(currentPageName)
 
     console.log(document.getElementById('lab0'))
-    
-    // apply color to buttons in index.html
-    document.getElementById('lab0').style.backgroundColor = getOrCreatePastel('lab0')
-    document.getElementById('lab1').style.backgroundColor = getOrCreatePastel('lab1')
-    document.getElementById('lab2').style.backgroundColor = getOrCreatePastel('lab2')
-    document.getElementById('lab3').style.backgroundColor = getOrCreatePastel('lab3')
-    document.getElementById('midterm').style.backgroundColor = getOrCreatePastel('midterm')
-    document.getElementById('lab4').style.backgroundColor = getOrCreatePastel('lab4')
-    document.getElementById('lab5').style.backgroundColor = getOrCreatePastel('lab5')
-    document.getElementById('final').style.backgroundColor = getOrCreatePastel('final')
 }
 
 // function to get the current file name from the URL
@@ -163,7 +153,7 @@ function generatePastel() {
 }
 
 // function to get or generate a random pastel color based on the current page and store it in localStorage
-function getOrCreatePastel(pageName) {
+export function getOrCreatePastel(pageName) {
     // construct a unique key for each page
     const storageKey = `pastelColor_${pageName}`
 
