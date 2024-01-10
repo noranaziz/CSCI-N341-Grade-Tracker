@@ -162,7 +162,7 @@ function getOrCreatePastel(pageName) {
     const storedColors = localStorage.getItem(storageKey)
 
     if(storedColors) {
-        return storedColors
+        return JSON.parse(storedColors)
     } else {
         // generate new colors
         const newColors = generatePastel()
@@ -183,16 +183,16 @@ function applyRandomPastel(pageName) {
 
     // apply color to each button
     buttons.forEach((button) => {
-        button.style.backgroundColor = pastelColors
+        button.style.backgroundColor = pastelColors.original
 
         // add hover effect
         button.addEventListener('mouseover', () => {
-            button.style.backgroundColor = pastelColors
+            button.style.backgroundColor = pastelColors.darkerOnHover
         })
 
         // reset color on mouseout
         button.addEventListener('mouseout', () => {
-            button.style.backgroundColor = pastelColors[1]
+            button.style.backgroundColor = pastelColors.original
         })
     })
 }
