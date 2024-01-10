@@ -147,7 +147,10 @@ function generatePastel() {
     const saturation = Math.floor(Math.random() * 30) + 70 // keep saturation between 70% and 100%
     const lightness = Math.floor(Math.random() * 20) + 70 // keep lightness between 70% and 90%
 
-    return `hsl(${hue}, ${saturation}%, ${lightness}%)`
+    return {
+        original: `hsl(${hue}, ${saturation}%, ${lightness}%)`,
+        darkerOnHover: `hsl(${hue}, ${saturation}%, ${lightness - 10}%)`,
+    }
 }
 
 // function to get or generate a random pastel color based on the current page and store it in localStorage
@@ -155,31 +158,41 @@ function getOrCreatePastel(pageName) {
     // construct a unique key for each page
     const storageKey = `pastelColor_${pageName}`
 
-    // check if color is already stored in localStorage for this page
-    const storedColor = localStorage.getItem(storageKey)
+    // check if colors are already stored in localStorage for this page
+    const storedColors = JSON.parse(localStorage.getItem(storageKey))
 
-    if(storedColor) {
-        return storedColor
+    if(storedColors) {
+        return storedColors
     } else {
-        // generate new color
-        const newColor = generatePastel()
+        // generate new colors
+        const newColors = generatePastel()
 
-        // store new color in localStorage
-        localStorage.setItem(storageKey, newColor)
+        // store new colors in localStorage
+        localStorage.setItem(storageKey, JSON.stringify(newColors))
 
-        return newColor
+        return newColors
     }
 }
 
 // apply random pastel color to all buttons
 function applyRandomPastel(pageName) {
-    const pastelColor = getOrCreatePastel(pageName)
+    const pastelColors = getOrCreatePastel(pageName)
 
     // get all buttons on the page
     const buttons = document.querySelectorAll('button')
 
     // apply color to each button
     buttons.forEach((button) => {
-        button.style.backgroundColor = pastelColor
+        button.style.backgroundColor = pastelColors.original
+
+        // add hover effect
+        button.addEventListener('mouseover', () => {
+            button.style.backgroundColor = pastelColors.darkerOnHover
+        })
+
+        // reset color on mouseout
+        button.addEventListener('mouseout', () => {
+            button.style.backgroundColor = pastelColors.original
+        })
     })
 }
