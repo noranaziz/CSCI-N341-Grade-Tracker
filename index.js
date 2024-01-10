@@ -1,6 +1,3 @@
-// import getOrCreatePastel() function from labs.js
-import { getOrCreatePastel } from "./labs"
-
 // apply color to buttons in index.html
 document.getElementById('lab0').style.backgroundColor = getOrCreatePastel('lab0')
 document.getElementById('lab1').style.backgroundColor = getOrCreatePastel('lab1')
