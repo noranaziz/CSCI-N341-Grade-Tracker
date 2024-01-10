@@ -159,7 +159,7 @@ function getOrCreatePastel(pageName) {
     const storageKey = `pastelColor_${pageName}`
 
     // check if colors are already stored in localStorage for this page
-    const storedColors = JSON.parse(localStorage.getItem(storageKey))
+    const storedColors = localStorage.getItem(storageKey)
 
     if(storedColors) {
         return storedColors
