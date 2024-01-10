@@ -153,7 +153,7 @@ function generatePastel() {
 }
 
 // function to get or generate a random pastel color based on the current page and store it in localStorage
-export function getOrCreatePastel(pageName) {
+function getOrCreatePastel(pageName) {
     // construct a unique key for each page
     const storageKey = `pastelColor_${pageName}`
 
