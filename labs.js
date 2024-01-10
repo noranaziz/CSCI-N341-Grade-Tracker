@@ -192,7 +192,7 @@ function applyRandomPastel(pageName) {
 
         // reset color on mouseout
         button.addEventListener('mouseout', () => {
-            button.style.backgroundColor = pastelColors
+            button.style.backgroundColor = pastelColors[1]
         })
     })
 }
