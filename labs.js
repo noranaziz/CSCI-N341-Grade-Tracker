@@ -167,9 +167,12 @@ function getOrCreatePastel(pageName) {
     }
 }
 
-// apply random pastel color to all buttons
+// apply random pastel color to elements
 function applyRandomPastel(pageName) {
     const pastelColor = getOrCreatePastel(pageName)
+
+    // apply color to header of page
+    document.getElementById('header').style.color = pastelColor
 
     // get all buttons on the page
     const buttons = document.querySelectorAll('button')
