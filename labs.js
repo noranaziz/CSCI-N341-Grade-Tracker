@@ -123,12 +123,8 @@ function displayAssignments(assignments) {
                     studentButton.innerHTML = student
 
                     studentButton.addEventListener('click', () => {
-                        // change background color on button click
-                        if(studentButton.style.backgroundColor == 'lightblue') {
-                            studentButton.style.backgroundColor = '' // reset color
-                        } else {
-                            studentButton.style.backgroundColor = 'lightblue'
-                        }
+                        // cross out text on button click
+                        studentButton.classList.toggle('crossed-out')
                     })
                     cell.appendChild(studentButton)
                 }

@@ -35,8 +35,8 @@ button {
     border: none;
 }
 
-button:hover {
-    background-color: aqua;
+.crossed-out {
+    text-decoration: line-through;
 }
 
 .assignments-table {
