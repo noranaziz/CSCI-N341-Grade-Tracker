@@ -22,8 +22,6 @@ function callAll() {
 
     // apply random pastel color
     applyRandomPastel(currentPageName)
-
-    console.log(document.getElementById('lab0'))
 }
 
 // function to get the current file name from the URL
@@ -149,58 +147,39 @@ function generatePastel() {
     const saturation = Math.floor(Math.random() * 30) + 70 // keep saturation between 70% and 100%
     const lightness = Math.floor(Math.random() * 20) + 70 // keep lightness between 70% and 90%
 
-    return {
-        original: `hsl(${hue}, ${saturation}%, ${lightness}%)`,
-        darkerOnHover: `hsl(${hue}, ${saturation}%, ${lightness - 10}%)`,
-    }
+    return `hsl(${hue}, ${saturation}%, ${lightness}%)`
 }
 
 // function to get or generate a random pastel color based on the current page and store it in localStorage
 function getOrCreatePastel(pageName) {
-    // construct nique keys for each color
-    const originalKey = `pastelColor_${pageName}_original`
-    const darkerOnHoverKey = `pastelColor_${pageName}_darkerOnHover`
+    // construct a unique key for each page
+    const storageKey = `pastelColor_${pageName}`
 
-    // check if colors are already stored in localStorage for this page
-    const storedOriginal = localStorage.getItem(originalKey)
-    const storedDarkerOnHover = localStorage.getItem(darkerOnHoverKey)
+    // check if color is already stored in localStorage for this page
+    const storedColor = localStorage.getItem(storageKey)
 
-    if(storedOriginal && storedDarkerOnHover) {
-        return {
-            original: storedOriginal,
-            darkerOnHover: storedDarkerOnHover,
-        }
+    if(storedColor) {
+        return storedColor
     } else {
-        // generate new colors
-        const newColors = generatePastel()
+        // generate new color
+        const newColor = generatePastel()
 
-        // store new colors in localStorage
-        localStorage.setItem(originalKey, newColors.original)
-        localStorage.getItem(darkerOnHoverKey, newColors.darkerOnHover)
+        // store new color in localStorage
+        localStorage.setItem(storageKey, newColor)
 
-        return newColors
+        return newColor
     }
 }
 
 // apply random pastel color to all buttons
 function applyRandomPastel(pageName) {
-    const pastelColors = getOrCreatePastel(pageName)
+    const pastelColor = getOrCreatePastel(pageName)
 
     // get all buttons on the page
     const buttons = document.querySelectorAll('button')
 
     // apply color to each button
     buttons.forEach((button) => {
-        button.style.backgroundColor = pastelColors.original
-
-        // add hover effect
-        button.addEventListener('mouseover', () => {
-            button.style.backgroundColor = pastelColors.darkerOnHover
-        })
-
-        // reset color on mouseout
-        button.addEventListener('mouseout', () => {
-            button.style.backgroundColor = pastelColors.original
-        })
+        button.style.backgroundColor = pastelColor
     })
 }
