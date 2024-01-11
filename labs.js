@@ -155,20 +155,26 @@ function generatePastel() {
 
 // function to get or generate a random pastel color based on the current page and store it in localStorage
 function getOrCreatePastel(pageName) {
-    // construct a unique key for each page
-    const storageKey = `pastelColor_${pageName}`
+    // construct nique keys for each color
+    const originalKey = `pastelColor_${pageName}_original`
+    const darkerOnHoverKey = `pastelColor_${pageName}_darkerOnHover`
 
     // check if colors are already stored in localStorage for this page
-    const storedColors = localStorage.getItem(storageKey)
+    const storedOriginal = localStorage.getItem(originalKey)
+    const storedDarkerOnHover = localStorage.getItem(darkerOnHoverKey)
 
-    if(storedColors) {
-        return JSON.parse(storedColors)
+    if(storedOriginal && storedDarkerOnHover) {
+        return {
+            original: storedOriginal,
+            darkerOnHover: storedDarkerOnHover,
+        }
     } else {
         // generate new colors
         const newColors = generatePastel()
 
         // store new colors in localStorage
-        localStorage.setItem(storageKey, JSON.stringify(newColors))
+        localStorage.setItem(originalKey, newColors.original)
+        localStorage.getItem(darkerOnHoverKey, newColors.darkerOnHover)
 
         return newColors
     }
