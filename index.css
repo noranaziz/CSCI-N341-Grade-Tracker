@@ -15,6 +15,10 @@ h1 {
     padding: 5px;
 }
 
+#header {
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
 a {
     width: 45%;
     margin: 10px;
