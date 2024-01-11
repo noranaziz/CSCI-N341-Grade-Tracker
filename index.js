@@ -1,5 +1,5 @@
 // apply color to buttons in index.html
-document.getElementById('lab0').style.backgroundColor = getOrCreatePastel('lab0')
+document.getElementById('lab0Button').style.backgroundColor = getOrCreatePastel('lab0')
 document.getElementById('lab1').style.backgroundColor = getOrCreatePastel('lab1')
 document.getElementById('lab2').style.backgroundColor = getOrCreatePastel('lab2')
 document.getElementById('lab3').style.backgroundColor = getOrCreatePastel('lab3')

@@ -22,6 +22,8 @@ function callAll() {
 
     // apply random pastel color
     applyRandomPastel(currentPageName)
+
+    console.log(document.getElementById('lab0'))
 }
 
 // function to get the current file name from the URL
