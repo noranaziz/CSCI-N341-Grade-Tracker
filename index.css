@@ -13,10 +13,7 @@ html, body {
 h1 {
     color: black;
     padding: 5px;
-}
-
-#header {
-    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 a {
@@ -31,12 +28,12 @@ a {
 }
 
 button {
-    padding: 10px 20px;
+    padding: 15px 20px;
     font-size: 16px;
     cursor: pointer;
     width: 100%;
     box-sizing: border-box;
-    border: none;
+    border: 1px solid black;
 }
 
 .crossed-out {
