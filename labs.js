@@ -5,17 +5,32 @@ function callAll() {
     const currentPageName = getCurrentFileName().split('.')[0]
     
     // get seed from file name
-    let seed = inferDestination(currentFileName)
+    let seed = localStorage.getItem(`seed_${currentPageName}`)
+    if(!seed) {
+        seed = inferDestination(currentFileName)
+        localStorage.setItem(`seed_${currentPageName}`,)
+    }
     console.log(seed)
     
     // array of students
     const students = ['Mina Abdelmalek', 'Nabila Abdoulkadri', 'Ahmad Anbar', 'John Beanblossom', 'Dorian Bell II', 'Ethan Bose', 'Mason Coles', 'Oliver Cooksey', 'Sid Dineshkumar', 'Sriman Donthireddi', 'Ana Marija Duleva', 'Jenna Flannery', 'Marissa Ford', 'Corey Gaylord', 'Jacob Gibson', 'Karnveer Gill', 'Avery Gilstrap', 'Simon Greenaway', 'Andrew Hage', 'Ayddan Hartle', 'Noor Hassuneh', 'Solomon Haynes', 'Udantha Herath', 'Victor Ilemobayo', 'Rece Ille-Potter', 'Liam Issah', 'Jorge Jimenez', 'Yassir Khalaf', 'Skyler Kiefer', 'Austin Kitch', 'Nathan Kohlman', 'Benjamin Krohn', 'Kelly Kuhn', 'Logan Kurker', 'Jack Lazaro', 'John Leidy', 'Johnathan Leverenz', 'Dylan Manning', 'Evan Marsh', 'Jack McClanahan', 'Leo Morales', 'Wali Munir', 'Elhadji Ndoye', 'Daniel Park', 'Quinton Pedrick', 'Adolfo Pozos Garcia', 'Dylan Reid', 'Muhammad Rizwan', 'Jonathan Rodriguez', 'Manjot Singh', 'Parmindar Singh', 'Miyatah Singleton', 'Carson Strohm', 'Samuel Theising', 'Zach Ullom', 'Hannah Waterman', 'JT Wellspring', 'William Wilkerson', 'Justin Zhu']
 
-    // shuffle array of students
-    const shuffledStudents = shuffleArray(students, seed)
+    // check if assignments are already stored in localStorage
+    const storedAssignments = localStorage.getItem(`assignments_${currentPageName}`)
 
-    // assign students to graders
-    const assignments = assignGraders(shuffledStudents)
+    let assignments
+
+    if(storedAssignments) {
+        assignments = storedAssignments
+    } else {
+        // shuffle array of students
+        const shuffledStudents = shuffleArray(students, seed)
+
+       // assign students to graders
+       assignments = assignGraders(shuffledStudents)
+
+       // store assignments in localStorage
+    }
 
     // display table
     displayAssignments(assignments)
