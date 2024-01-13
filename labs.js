@@ -75,34 +75,32 @@ function assignGraders(students) {
     // array of graders
     const graders = ['Noran', 'Laurie', 'Sravani']
 
+    // assignments
+    const assignments = {}
+
     // shuffle array of students
     const shuffledStudents = shuffleArray(students)
 
-    // create an array of students assigned to each grader
-    const studentsByGrader = graders.map(() => [])
-
-    // assign students to graders
+    // assign a student to a grader
     shuffledStudents.forEach((student, index) => {
         const graderIndex = index % graders.length
-        studentsByGrader[graderIndex].push(student)
+        const grader = graders[graderIndex]
+
+        if(!assignments[grader]) {
+            assignments[grader] = []
+        }
+
+        assignments[graders].push(student)
     })
 
-    // sort students within each grader based on last name
-    const sortedStudents = studentsByGrader.map((graderStudents) => {
-        graderStudents.sort((a, b) => {
+    // sort students by last name
+    for(const grader in assignments) {
+        assignments[grader] = assignments[grader].sort((a, b) => {
             const lastNameA = a.split(' ').pop()
             const lastNameB = b.split(' ').pop()
             return lastNameA.localeCompare(lastNameB)
         })
-    })
-
-    // create the final assignments object
-    const assignments = {}
-    graders.forEach((grader, graderIndex) => {
-        sortedStudents[graderIndex].forEach((student) => {
-            assignments[student] = grader
-        })
-    })
+    }
 
     return assignments
 }
@@ -130,18 +128,16 @@ function displayAssignments(assignments) {
             cell.innerHTML = `<strong>${grader}</strong>`
 
             // add students below each grader as buttons
-            for(const student in assignments) {
-                if(assignments[student] == grader) {
-                    const studentButton = document.createElement('button')
-                    studentButton.innerHTML = student
+            assignments[grader].forEach((student) => {
+                const studentButton = document.createElement('button')
+                studentButton.innerHTML = student
 
-                    studentButton.addEventListener('click', () => {
-                        // cross out text on button click
-                        studentButton.classList.toggle('crossed-out')
-                    })
-                    cell.appendChild(studentButton)
-                }
-            }
+                studentButton.addEventListener('click', () => {
+                    // cross out text on button click
+                    studentButton.classList.toggle('crossed-out')
+                })
+                cell.appendChild(studentButton)
+            })
         })
 
         tableContainer.appendChild(table)
