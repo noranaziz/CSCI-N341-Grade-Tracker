@@ -105,7 +105,7 @@ function assignGraders(students) {
             assignments[grader] = []
         }
 
-        assignments[grader].push(student)
+        assignments[graders].push(student)
     })
 
     // sort students by last name
