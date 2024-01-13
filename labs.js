@@ -75,23 +75,25 @@ function assignGraders(students) {
     // array of graders
     const graders = ['Noran', 'Laurie', 'Sravani']
 
+    // sort students by last name
+    const sortedStudents = students.sort((a, b) => {
+        const lastNameA = a.split(' ').pop()
+        const lastNameB = b.split(' ').pop()
+        return lastNameA.localeCompare(lastNameB)
+    })
+
     // assignments
     const assignments = {};
 
     // assign a student to a grader
-    students.forEach((student, index) => {
+    sortedStudents.forEach((student, index) => {
         const graderIndex = index % graders.length
         const grader = graders[graderIndex]
 
         assignments[student] = grader
     })
 
-    // sort assignments alphabetically by student name
-    const sortedAssignments = Object.fromEntries(
-        Object.entries(assignments).sort(([a], [b]) => a.localeCompare(b))
-    )
-
-    return sortedAssignments
+    return assignments
 }
 
 // function to display assignments as table
