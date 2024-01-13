@@ -75,22 +75,33 @@ function assignGraders(students) {
     // array of graders
     const graders = ['Noran', 'Laurie', 'Sravani']
 
-    // sort students by last name
-    const sortedStudents = students.sort((a, b) => {
-        const lastNameA = a.split(' ').pop()
-        const lastNameB = b.split(' ').pop()
-        return lastNameA.localeCompare(lastNameB)
+    // shuffle array of students
+    const shuffledStudents = shuffleArray(students)
+
+    // create an array of students assigned to each grader
+    const studentsByGrader = graders.map(() => [])
+
+    // assign students to graders
+    shuffledStudents.forEach((student, index) => {
+        const graderIndex = index % graders.length
+        studentsByGrader[graderIndex].push(student)
     })
 
-    // assignments
-    const assignments = {};
+    // sort students within each grader based on last name
+    const sortedStudents = studentsByGrader.map((graderStudents) => {
+        graderStudents.sort((a, b) => {
+            const lastNameA = a.split(' ').pop()
+            const lastNameB = b.split(' ').pop()
+            return lastNameA.localeCompare(lastNameB)
+        })
+    })
 
-    // assign a student to a grader
-    sortedStudents.forEach((student, index) => {
-        const graderIndex = index % graders.length
-        const grader = graders[graderIndex]
-
-        assignments[student] = grader
+    // create the final assignments object
+    const assignments = {}
+    graders.forEach((grader, graderIndex) => {
+        sortedStudents[graderIndex].forEach((student) => {
+            assignments[student] = grader
+        })
     })
 
     return assignments
