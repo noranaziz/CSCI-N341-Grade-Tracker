@@ -83,12 +83,15 @@ function assignGraders(students) {
         const graderIndex = index % graders.length
         const grader = graders[graderIndex]
 
-        assignments[student] = grader
+        // extract last name
+        const lastName = student.split(' ').pop()
+
+        assignments[student] = {grader, lastName}
     })
 
     // sort assignments alphabetically by student name
     const sortedAssignments = Object.fromEntries(
-        Object.entries(assignments).sort(([a], [b]) => a.localeCompare(b))
+        Object.entries(assignments).sort(([, a], [, b]) => a.lastName.localeCompare(b.lastName))
     )
 
     return sortedAssignments
@@ -118,7 +121,7 @@ function displayAssignments(assignments) {
 
             // add students below each grader as buttons
             for(const student in assignments) {
-                if(assignments[student] == grader) {
+                if(assignments[student].grader == grader) {
                     const studentButton = document.createElement('button')
                     studentButton.innerHTML = student
 
